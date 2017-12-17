@@ -24,6 +24,10 @@ posts = Post.all
   )
 end
 
+myPost = Post.find_or_create_by(title: 'Jason Leinberger Post 1', body: 'This is my first unique post seeding test')
+
+myPost.comments.find_or_create_by(body: 'what a great first post!')
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
