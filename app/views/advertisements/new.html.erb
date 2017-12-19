@@ -1,0 +1,23 @@
+<h1>New Advertisement</h1>
+
+<div class="row">
+  <div class="col-md-8">
+    <%= form_for @advertisement do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="form-group">
+      <%= f.label :copy %>
+      <%= f.text_area :copy %>
+    </div>
+    <div class="form-group">
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Save" %>
+    </div>
+    <% end %>
+  </div>
+</div>

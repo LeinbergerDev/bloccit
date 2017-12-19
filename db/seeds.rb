@@ -28,6 +28,15 @@ myPost = Post.find_or_create_by(title: 'Jason Leinberger Post 1', body: 'This is
 
 myPost.comments.find_or_create_by(body: 'what a great first post!')
 
+50.times do
+  Advertisement.create!(
+    title: RandomData.random_sentence,
+    copy: RandomData.random_paragraph,
+    price: 10
+  )
+end
+
 puts "Seed finished"
+puts "#{Advertisement.count} advertisements created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
