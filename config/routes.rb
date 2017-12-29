@@ -4,7 +4,11 @@ Rails.application.routes.draw do
     resources :posts, except: [:index]
   end
 
-  resources :users, only: [:new, :create]
+  resources :users do
+    resources :users, only: [:new, :create]
+  end
+
+  post 'users/confirm'
 
   get 'about' => 'welcome#about'
 
