@@ -46,12 +46,14 @@ end
 
 user = User.first
 user.update_attributes!(
+  name: 'Jason Leinberger',
   email: 'jason@leinberberdev.com',
-  password: 'hellowworld'
+  password: 'helloworld'
 )
 
 puts "Seed finished"
 puts "#{User.count} users created"
+puts "#{User.first.email} is updated"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
