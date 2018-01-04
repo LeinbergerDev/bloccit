@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
 
   before_action :require_sign_in, except: :show
-  before_action :authorize_user, except: [:show, :new, :create]
+  before_action :authorize_user, except: [:show, :new, :create], if: -> {current_user && !(current_user.moderator?) }
+  before_action :authorize_moderator, except: [ :delete ], if: -> {current_user && current_user.moderator? }
 
   def show
     @post = Post.find(params[:id])
@@ -70,4 +71,11 @@ class PostsController < ApplicationController
        redirect_to [post.topic, post]
      end
    end #end authorize_user
+
+   def authorize_moderator
+     unless current_user.moderator?
+       flash[:alert] = "Moderators cannot do that."
+       redirect_to topics_path
+     end
+   end
 end
