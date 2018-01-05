@@ -191,6 +191,12 @@ RSpec.describe PostsController, type: :controller do
         expect{ post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_sentence } } }.to change(Post,:count).by(1)
       end
 
+      it "increases the number of user votes by 1" do
+        votes = my_user.votes.count
+        post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
+        expect(my_user.votes.count).to eq (votes + 1)
+      end
+
       it "assigns the new post to @post" do
         post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
         expect(assigns(:post)).to eq Post.last

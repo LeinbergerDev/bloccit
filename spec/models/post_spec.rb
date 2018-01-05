@@ -78,6 +78,8 @@ RSpec.describe Post, type: :model do
       end
     end
 
+    
+
   end #end voting
 
 end
