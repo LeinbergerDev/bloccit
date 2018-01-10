@@ -18,8 +18,33 @@
     </div>
   </div>
 </div>
-
+<% if user_has_post %>
 <h2>Posts</h2>
 <%= render @user.posts %>
+<% else %>
+  <h2><%= "#{@user.name} has not submitted any posts" %></h2>
+<% end %>
+<% if user_has_comment %>
 <h2>Comments</h2>
 <%= render @user.comments %>
+<% else %>
+  <h2><%= "#{@user.name} has not submitted any comments" %></h2>
+<% end %>
+<% if @user.favorites.count > 0 %>
+  <h2>Posts Favorited</h2>
+  <div class="row">
+  <% @user.favorites.each do |fav| %>
+  <div class="media">
+    <%= render partial: 'votes/voting', locals: { post: Post.find(fav.post_id) } %>
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to Post.find(fav.post_id).title, topic_post_path(Topic.find(Post.find(fav.post_id).topic_id), Post.find(fav.post_id)) %>
+      </h4>
+      <small>
+        submitted <%= time_ago_in_words(Post.find(fav.post_id).created_at) %> ago by <%= Post.find(fav.post_id).user.name %> <br>
+        <%= Post.find(fav.post_id).comments.count %> Comments
+      </small>
+    </div>
+  </div>
+  <% end %>
+<% end %>

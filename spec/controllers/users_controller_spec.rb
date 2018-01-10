@@ -85,4 +85,14 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe "Has posts" do
+    before do
+      post :create, params: { user: new_user_attributes }
+    end
+
+    it "returns true if user post count is greater than 1" do
+      check = user_has_post
+      expect(check).to eq(true)
+    end
+  end
 end

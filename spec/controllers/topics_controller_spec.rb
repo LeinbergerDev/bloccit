@@ -4,7 +4,7 @@ include SessionsHelper
 
 RSpec.describe TopicsController, type: :controller do
   let(:my_topic) { create(:topic) }
-  
+
   context "guest" do
 
     describe "GET index" do
@@ -262,8 +262,5 @@ RSpec.describe TopicsController, type: :controller do
     end # end of delete destroy
 
   end # end admin user context
-
-
-
 
 end # end of controller spec

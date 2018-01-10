@@ -25,4 +25,12 @@ class FavoritesController < ApplicationController
     end
     redirect_to [post.topic, post]
   end
+
+  def favorited_post
+    @favorited_post = Post.find(params[:post_id])
+  end
+
+  def favorited_post_topic
+    @favtorited_post_topic = Topic.find(post.topic_id)
+  end
 end
